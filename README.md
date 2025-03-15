@@ -1,66 +1,72 @@
-## Foundry
+# Merkle Airdrop Extravaganza 
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# Getting Started
 
-Foundry consists of:
+## Requirements
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - You'll know you did it right if you can run `git --version` and you see a response like `git version x.x.x`
+- [foundry](https://getfoundry.sh/)
+  - You'll know you did it right if you can run `forge --version` and you see a response like `forge 0.2.0 (816e00b 2023-03-16T00:05:26.396218Z)`
 
-## Documentation
+## Quickstart
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```bash
+git clone https://github.com/Ubaid-ch/Merkle_Airdrop.git
+cd Merkle_Airdrop
+make # or forge install && forge build if you don't have make 
 ```
 
-### Test
+# Usage
 
-```shell
-$ forge test
+## Pre-deploy: Generate merkle proofs
+
+We are going to generate merkle proofs for an array of addresses to airdrop funds to. If you'd like to work with the default addresses and proofs already created in this repo, skip to [deploy](#deploy).
+
+If you'd like to work with a different array of addresses (the `whitelist` list in `GenerateInput.s.sol`), you will need to follow the following steps:
+
+```bash
+make merkle
 ```
 
-### Format
+# Deploy 
 
-```shell
-$ forge fmt
+## Deploy to Anvil
+
+```bash
+foundryup
+make anvil
+make deploy
 ```
 
-### Gas Snapshots
+# Interacting - Local anvil network
 
-```shell
-$ forge snapshot
+```bash
+foundryup
+make anvil
+make deploy
+make sign
+make claim
+make balance
 ```
 
-### Anvil
+# Testing
 
-```shell
-$ anvil
+```bash
+forge test
 ```
 
-### Deploy
+# Estimate gas
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```bash
+forge snapshot
 ```
 
-### Cast
+# Formatting
 
-```shell
-$ cast <subcommand>
+```bash
+forge fmt
 ```
 
-### Help
+# Thank you!
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
